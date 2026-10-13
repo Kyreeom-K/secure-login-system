@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block content %}
+<h1>Enable 2FA</h1>
+<p>In Google Authenticator / Authy, add an account manually with this key:</p>
+<p><code>{{ secret }}</code></p>
+<form method="post">
+ <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+ <label>Enter the 6-digit code to confirm</label>
+ <input name="code" inputmode="numeric" pattern="\d{6}" maxlength="6" required>
+ <button>Enable</button>
+</form>
+{% endblock %}

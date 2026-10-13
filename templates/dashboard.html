@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block content %}
+<h1>Welcome, {{ session.username }}</h1>
+<p>You are logged in securely.</p>
+<p>Two-factor authentication: <b>{{ 'ON' if tfa else 'OFF' }}</b></p>
+{% if not tfa %}<p><a href="{{ url_for('setup_2fa') }}">Enable 2FA</a></p>{% endif %}
+<form method="post" action="{{ url_for('logout') }}">
+ <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+ <button>Log out</button>
+</form>
+{% endblock %}
